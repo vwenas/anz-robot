@@ -48,8 +48,6 @@ namespace AnzRobotCore
 
             var gameMap = new GameMap(5, 5);
             var robot = new Robot(gameMap);
-
-            bool isRobotPlaced = false;
             
             foreach (var command in validCommands)
             {
@@ -71,13 +69,12 @@ namespace AnzRobotCore
 
                     if (showCommands)
                         output.Add(command);
-
-                    isRobotPlaced = true;
+                    
                     continue;
                 }
 
                 // don't execute anything until first PLACE command is executed
-                if (!isRobotPlaced) continue;
+                if (!robot.IsPlaced) continue;
 
                 switch (commandKeyword)
                 {

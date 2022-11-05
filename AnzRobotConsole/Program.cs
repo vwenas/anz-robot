@@ -8,6 +8,9 @@ namespace AnzRobotConsole
     {
         static void Main(string[] args)
         {
+            // set this to true to show the executed commands
+            var showCommands = false;
+
             var serviceProvider = new ServiceCollection()
                 .AddSingleton<IRobotRunner, RobotRunner>()
                 .BuildServiceProvider();
@@ -20,7 +23,7 @@ namespace AnzRobotConsole
             var commands = File.ReadAllText(path);
 
             var robotRunner = serviceProvider.GetService<IRobotRunner>();
-            var outputs = robotRunner.RunCommands(commands, true);
+            var outputs = robotRunner.RunCommands(commands, showCommands);
 
             foreach (var output in outputs)
                 Console.WriteLine(output);

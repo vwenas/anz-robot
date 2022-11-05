@@ -69,7 +69,8 @@ namespace AnzRobotCore
 
                     robot.Place(x, y, direction);
 
-                    output.Add(command);
+                    if (showCommands)
+                        output.Add(command);
 
                     isRobotPlaced = true;
                     continue;
@@ -82,21 +83,25 @@ namespace AnzRobotCore
                 {
                     case moveCommand:
                         robot.Move();
-                        output.Add(command);
+                        if (showCommands) 
+                            output.Add(command);
                         break;
 
                     case leftCommand:
                         robot.Left();
-                        output.Add(command);
+                        if (showCommands)
+                            output.Add(command);
                         break;
 
                     case rightCommand:
                         robot.Right();
-                        output.Add(command);
+                        if (showCommands)
+                            output.Add(command);
                         break;
 
                     case reportCommand:
-                        output.Add(command);
+                        if (showCommands)
+                            output.Add(command);
                         output.Add($"Output: {robot.Report()}");
                         break;
                 }
